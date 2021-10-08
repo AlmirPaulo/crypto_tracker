@@ -1,16 +1,12 @@
 #Imports
 import pandas as pd
 import matplotlib.pyplot as plt
-from openpyxl import Workbook
 import requests
 
 
 #Global Variables
 url = "https://api.coincap.io/v2/assets"
-wb = Workbook()
-ws = wb.active
 tracked_currencies = ['bitcoin', 'ethereum']
-# hourly = f"https://api.coincap.io/v2/assets/{}/history?interval=h1"
 budget = ...
 
 #Functions
