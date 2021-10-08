@@ -7,8 +7,6 @@ import requests
 #Global Variables
 url = "https://api.coincap.io/v2/assets"
 tracked_currencies = ['bitcoin', 'ethereum']
-budget = ...
-
 #Functions
 
 def get_data():
@@ -37,7 +35,7 @@ def daily_check():
             for n in range(len(data)):
                 currency = target
                 price = data[n]['priceUsd']
-                pair = (currency, price)
+                pair = {"currenncy":currency,"price":price}
                 export.append(pair)
         else:
             return f"something went wrong! Error - {str(resp.status_code)}"
@@ -59,8 +57,19 @@ def hourly_check():
             return f"something went wrong! Error - {str(resp.status_code)}"
     return export
 
-def write_data():
-    pass
 
-#Main Loop
-print(daily_check())
+def create_df(data):
+    if data is not str:
+        df = pd.DataFrame(data)
+        return df
+    #tratar erro
+    
+
+def plot_data(x, y, title):
+    graph = plt.plot(x, y)
+    graph.title(title)
+    return graph
+
+DF = create_df(daily_check())
+print(dir(DF))
+DF.plot()
